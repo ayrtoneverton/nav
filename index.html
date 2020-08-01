@@ -15,7 +15,7 @@
 			</a>
 			<a id="logo" href="#home" title="Ir para tela inicial"><img src="logo.png"/></a>
 			<form name="form">
-				<input name="search" required="required" placeholder="O que deseja acessar? (url ou busca)" />
+				<input name="search" required="required" placeholder="O que deseja acessar?" />
 				<button>
 					<svg viewBox="0 0 24 24">
 						<path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"></path>
@@ -23,12 +23,19 @@
 				</button>
 			</form>
 			<div id="all-btn">
-				<a id="historyc" class="btn" href="#historyc" title="Histórico">
+				<a id="add-history" class="btn" href="#add-history" title="Adicionar ao Histórico">
 					<svg viewBox="0 0 24 24">
-						<path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path>
+						<path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
 					</svg>
-					<div></div>
 				</a>
+				<div id="history">
+					<a class="btn" href="#history" title="Histórico">
+						<svg viewBox="0 0 24 24">
+							<path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path>
+						</svg>
+					</a>
+					<div id="history-list"></div>
+				</div>
 			</div>
 		</div>
 		<iframe name="ifm" src="home.html" sandbox="allow-same-origin allow-scripts allow-forms" allowfullscreen></iframe>

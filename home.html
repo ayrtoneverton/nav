@@ -21,35 +21,8 @@
 		<a href="https://startflix.net">Startflix</a>
 		<a href="https://www.thenightseries.org">The Night Series</a>
 		<a href="https://ver.series-online.info">Series Online</a>
-		<a href="https://animesonlinebr.co/video/20841">Uma Família Da Pesada</a>
+		<a href="https://animesonlinebr.co/video/20851">Uma Família Da Pesada</a>
 		<a href="https://filmesonlineseries.org/the-big-bang-theory/">The Big Bang Theory</a>
 	</div>
-	<input type="file" accept="video/*" />
-	<p id="progress"></p>
-	<button onclick="getFrame()">Get Frame</button>
-	<img />
-	<video controls muted />
-	<script type="text/javascript">
-		document.querySelector('input').addEventListener('change', selectVideo, false);
-		const video = document.querySelector('video');
-		const img = document.querySelector('img');
-
-		function getFrame() {
-			const canvas = document.createElement('canvas');
-			const ctx = canvas.getContext('2d');
-			canvas.width = video.videoWidth;
-			canvas.height = video.videoHeight;
-			ctx.drawImage(video, 0, 0);
-			canvas.toBlob((blob) => {
-				img.src = URL.createObjectURL(blob);
-				URL.revokeObjectURL(blob);
-			}, 'image/jpeg');
-		}
-
-		function selectVideo() {
-			video.src = URL.createObjectURL(this.files[0]);
-			URL.revokeObjectURL(this.files[0]);
-		}
-	</script>>
 </body>
 </html>

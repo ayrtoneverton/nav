@@ -16,25 +16,71 @@ $('#logo').onclick = () => {
 	return false;
 };
 
-function clickHistoryc(e) {
-	iframe.src = e;
-	iframe.focus();
+const extractValues = (text) => {
+	const values = text.split('=>');
+	if (values.length < 2)
+		values[1] = values[0];
+	try {
+		values[1] = new URL(values[1].trim());
+	} catch (_) {
+		values[1] = 'https://www.bing.com/search?q=' + encodeURIComponent(values[1]);
+	}
+	return values;
 }
 
-$('#historyc').onclick = function() {
-	$('#historyc div').innerHTML =
-		(localStorage.getItem('historyc') || '').split(';,;').map(e => e && `<div><a onclick="clickHistoryc('${e}')">${e}</a></div>`).join('');
+const enterHistory = (e) => {
+	const { href, text } = e.target;
+	document.form.search.value = text === href ? href : text + ' => ' + href;
+	iframe.src = href;
+	iframe.focus();
+	$('#history').toggleClass('active');
+	return false;
+}
+
+const removeHistory = (e) => {
+	e.target.parentElement.remove();
+	return false;
+}
+
+const addHistory = (text) => {
+	if (!text) return;
+	const div = document.createElement('div');
+
+	let a = document.createElement('a');
+	const [title, link] = extractValues(text);
+	a.innerHTML = title;
+	a.href = link;
+	a.onclick = enterHistory;
+	div.appendChild(a);
+
+	a = document.createElement('a');
+	a.innerHTML = 'X';
+	a.href = '#remove-history';
+	a.title = 'Remover';
+	a.onclick = removeHistory;
+	div.appendChild(a);
+
+	list = $('#history-list');
+	list.prepend(div);
+}
+
+(localStorage.getItem('history') || '').split(';,;').map(addHistory);
+
+$('#add-history').onclick = () => {
+	const { form: { search: { value } } } = document;
+	localStorage.setItem('history', `${localStorage.getItem('history') || ''}${value};,;`);
+	addHistory(value);
+	return false;
+};
+
+$('#history > a').onclick = (e) => {
+	e.preventDefault();
+	$('#history').toggleClass('active');
 	return false;
 };
 
 document.onsubmit = (e) => {
 	e.preventDefault();
-	const { form: { search: { value } } } = document;
-	try {
-		iframe.src = new URL(value);
-		localStorage.setItem('historyc', `${localStorage.getItem('historyc') || ''}${iframe.src};,;`);
-	} catch (_) {
-		iframe.src = 'https://www.bing.com/search?q=' + encodeURIComponent(value);
-	}
+	iframe.src = extractValues(document.form.search.value)[1];
 	iframe.focus();
 }
