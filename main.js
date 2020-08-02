@@ -26,21 +26,38 @@ const extractValues = (text) => {
 		values[1] = 'https://www.bing.com/search?q=' + encodeURIComponent(values[1]);
 	}
 	return values;
-}
+};
 
-const enterHistory = (e) => {
-	const { href, text } = e.target;
+const checkEmpty = () => {
+	const list = $('#history-list');
+	let span = $('#history-list > span');
+	if (list.children.length) {
+		if (span && list.children.length > 1) span.remove();
+		return;
+	}
+	span = document.createElement('span');
+	span.innerHTML = 'Nada adicionado';
+	list.prepend(span);
+};
+
+const enterHistory = ({ target: { href, text } }) => {
 	document.form.search.value = text === href ? href : text + ' => ' + href;
 	iframe.src = href;
 	iframe.focus();
 	$('#history').toggleClass('active');
 	return false;
-}
+};
 
-const removeHistory = (e) => {
-	e.target.parentElement.remove();
+const removeHistory = ({ target: { parentElement: el } }) => {
+	const list = localStorage.getItem('history').split(';,;').filter(e => e);
+	const i = list.length - 1 - Array.from(el.parentElement.children).indexOf(el);
+	list.splice(i, 1);
+	list.push('');
+	localStorage.setItem('history', list.join(';,;'));
+	el.remove();
+	checkEmpty();
 	return false;
-}
+};
 
 const addHistory = (text) => {
 	if (!text) return;
@@ -60,20 +77,21 @@ const addHistory = (text) => {
 	a.onclick = removeHistory;
 	div.appendChild(a);
 
-	list = $('#history-list');
-	list.prepend(div);
-}
+	$('#history-list').prepend(div);
+};
 
 (localStorage.getItem('history') || '').split(';,;').map(addHistory);
+checkEmpty();
 
 $('#add-history').onclick = () => {
 	const { form: { search: { value } } } = document;
 	localStorage.setItem('history', `${localStorage.getItem('history') || ''}${value};,;`);
 	addHistory(value);
+	checkEmpty();
 	return false;
 };
 
-$('#history > a').onclick = (e) => {
+$('#history > .btn').onclick = (e) => {
 	e.preventDefault();
 	$('#history').toggleClass('active');
 	return false;
@@ -83,4 +101,4 @@ document.onsubmit = (e) => {
 	e.preventDefault();
 	iframe.src = extractValues(document.form.search.value)[1];
 	iframe.focus();
-}
+};

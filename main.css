@@ -21,13 +21,13 @@ body {
 	flex-direction: column;
 }
 ::-webkit-scrollbar {
-    width: .5rem;
+	width: .5rem;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, .3);
+	background-color: rgba(0, 0, 0, .3);
 }
 
-/*==============   TOP HEADER   ================*/
+/*==============  TOP HEADER  ================*/
 #top {
 	background: #451a55;
 	border-bottom: solid .05rem #888;
@@ -42,7 +42,7 @@ body {
 	margin-top: -3.8rem;
 }
 
-/*==============   BUTTONS   ================*/
+/*==============  BUTTONS  ================*/
 #all-btn {
 	float: right;
 }
@@ -60,7 +60,7 @@ body {
 	vertical-align: middle;
 }
 
-/*==============   HISTORY BUTTONS   ================*/
+/*==============  HISTORY BUTTONS  ================*/
 #history {
 	position: relative;
 	display: inline-block;
@@ -107,11 +107,11 @@ body {
 	text-align: right;
 	margin-left: auto;
 }
-#history-list a:hover {
+#history-list a:hover, #history-list a:focus {
 	opacity: .5;
 }
 
-/*==============   HIDE BUTTON   ================*/
+/*==============  HIDE BUTTON  ================*/
 #hide {
 	position: fixed;
 	top: 0;
@@ -125,10 +125,10 @@ body {
 	transform: rotate(180deg);
 }
 
-/*==============   LOGO   ================*/
+/*==============  LOGO  ================*/
 #logo {
 	padding: .1rem;
-	margin-left: 3.8rem;
+	margin: 0 .5rem 0 3.8rem;
 }
 #logo > img {
 	display: block;
@@ -139,20 +139,19 @@ body {
 	border-radius: 50%;
 }
 
-/*==============   SEARCH   ================*/
+/*==============  SEARCH  ================*/
 form {
 	position: relative;
-	width: calc(100% - 20rem);	
-	max-width: 35rem;
+	width: 40rem;
+	max-width: calc(100% - 17rem);
 }
 input {
-	padding: 5px 86px 5px 18px;
-	font-size: 20px;
+	padding: .4rem 6rem .4rem 1rem;
+	font-size: 1.3rem;
 	vertical-align: middle;
 	color: rgba(69, 26, 85, .8);
-	width: calc(100% - 104px);
-	height: 26px;
-	border-radius: 18px;
+	width: calc(100% - 7rem);
+	border-radius: 2rem;
 }
 button {
 	position: absolute;
@@ -160,12 +159,12 @@ button {
 	right: 0;
 	height: 100%;
 	background: #BBB;
-	padding: 0 22px;
+	padding: 0 1.5rem;
 	cursor: pointer;
-	border-radius: 18px;
+	border-radius: 2rem;
 }
 button svg {
-	width: 32px;
+	width: 2rem;
 	fill: #333;
 	vertical-align: middle;
 	-webkit-transform: rotate(90deg);
