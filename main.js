@@ -16,12 +16,22 @@ $('#logo').onclick = () => {
 	return false;
 };
 
+document.form.search.oninput = () => {
+	$('#clean').classList[document.form.search.value ? 'add' : 'remove' ]('show');
+};
+
+$('#clean').onclick = () => {	
+	document.form.search.value = '';
+	document.form.search.oninput();
+	return false;	
+};
+
 const extractValues = (text) => {
 	const values = text.split('=>');
 	if (values.length < 2)
 		values[1] = values[0];
 	try {
-		values[1] = new URL(values[1].trim());
+		values[1] = new URL(values[1]);
 	} catch (_) {
 		values[1] = 'https://www.bing.com/search?q=' + encodeURIComponent(values[1]);
 	}
@@ -41,7 +51,8 @@ const checkEmpty = () => {
 };
 
 const enterHistory = ({ target: { href, text } }) => {
-	document.form.search.value = text === href ? href : text + ' => ' + href;
+	document.form.search.value = text === href ? href : text.trim() + ' => ' + href;
+	document.form.search.oninput();
 	iframe.src = href;
 	iframe.focus();
 	$('#history').toggleClass('active');
@@ -80,8 +91,15 @@ const addHistory = (text) => {
 	$('#history-list').prepend(div);
 };
 
-(localStorage.getItem('history') || '').split(';,;').map(addHistory);
-checkEmpty();
+window.onload = () => {
+	(localStorage.getItem('history') || '').split(';,;').map(addHistory);
+	const { firstChild } = $('#history-list');
+	if (firstChild) {
+		firstChild.firstChild.click();
+		$('#history').toggleClass('active');
+	}
+	checkEmpty();
+};
 
 $('#add-history').onclick = () => {
 	const { form: { search: { value } } } = document;

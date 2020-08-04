@@ -80,9 +80,11 @@ body {
 	padding: .5rem 1rem;
 	border-radius: .5rem;
 	overflow: auto;
+	visibility: hidden;
 }
 #history.active > #history-list {
 	right: .6rem;
+	visibility: visible;
 }
 #history .btn {
 	margin-left: 0;
@@ -146,12 +148,32 @@ form {
 	max-width: calc(100% - 17rem);
 }
 input {
-	padding: .4rem 6rem .4rem 1rem;
+	padding: .4rem 7.7rem .4rem 1rem;
 	font-size: 1.3rem;
 	vertical-align: middle;
 	color: rgba(69, 26, 85, .8);
-	width: calc(100% - 7rem);
+	width: calc(100% - 8.7rem);
 	border-radius: 2rem;
+}
+form a {
+	position: absolute;
+	top: 0;
+	right: 4rem;
+	display: none;
+	height: 100%;
+	padding: 0 1.5rem;
+	cursor: pointer;
+	border-radius: 2rem;
+}
+form a.show {
+	display: flex;
+}
+form a svg {
+	width: 1.5rem;
+	fill: #333;
+}
+form a:hover, form a:focus {
+	opacity: .5;
 }
 button {
 	position: absolute;
