@@ -59,7 +59,7 @@ const enterHistory = ({ target: { href, text } }) => {
 	return false;
 };
 
-const removeHistory = ({ target: { parentElement: el } }) => {
+const removeHistory = ({ currentTarget: { parentElement: el } }) => {
 	const list = localStorage.getItem('history').split(';,;').filter(e => e);
 	const i = list.length - 1 - Array.from(el.parentElement.children).indexOf(el);
 	list.splice(i, 1);
@@ -82,7 +82,7 @@ const addHistory = (text) => {
 	div.appendChild(a);
 
 	a = document.createElement('a');
-	a.innerHTML = 'X';
+	a.prepend($('form svg').cloneNode(1));
 	a.href = '#remove-history';
 	a.title = 'Remover';
 	a.onclick = removeHistory;
@@ -110,7 +110,6 @@ $('#add-history').onclick = () => {
 };
 
 $('#history > .btn').onclick = (e) => {
-	e.preventDefault();
 	$('#history').toggleClass('active');
 	return false;
 };

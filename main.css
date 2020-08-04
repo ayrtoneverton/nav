@@ -29,7 +29,7 @@ body {
 
 /*==============  TOP HEADER  ================*/
 #top {
-	background: #451a55;
+	background: #451A55;
 	border-bottom: solid .05rem #888;
 	height: 3.8rem;
 	text-align: center;
@@ -94,6 +94,7 @@ body {
 }
 #history-list > div {
 	display: flex;
+	align-items: center;
 	margin: .3rem;
 	border-bottom: solid .05rem rgba(0, 0, 0, .3);
 }
@@ -105,8 +106,8 @@ body {
 	white-space: nowrap;
 }
 #history-list a:last-child {
-	min-width: 1rem;
-	text-align: right;
+	min-width: 1.4rem;
+	fill: #FFF;
 	margin-left: auto;
 }
 #history-list a:hover, #history-list a:focus {
@@ -148,7 +149,7 @@ form {
 	max-width: calc(100% - 17rem);
 }
 input {
-	padding: .4rem 7.7rem .4rem 1rem;
+	padding: .4rem 7.5rem .4rem 1rem;
 	font-size: 1.3rem;
 	vertical-align: middle;
 	color: rgba(69, 26, 85, .8);
@@ -158,10 +159,10 @@ input {
 form a {
 	position: absolute;
 	top: 0;
-	right: 4rem;
+	right: 5rem;
 	display: none;
 	height: 100%;
-	padding: 0 1.5rem;
+	padding: 0 .5rem;
 	cursor: pointer;
 	border-radius: 2rem;
 }
