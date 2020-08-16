@@ -20,6 +20,11 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+@media(min-width: 1500px) {
+	html {		
+		font-size: 22px;
+	}
+}
 ::-webkit-scrollbar {
 	width: .5rem;
 }
