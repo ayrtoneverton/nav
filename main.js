@@ -42,7 +42,8 @@ const checkEmpty = () => {
 	const list = $('#history-list');
 	let span = $('#history-list > span');
 	if (list.children.length) {
-		if (span && list.children.length > 1) span.remove();
+		if (span && list.children.length > 1)
+			span.remove();
 		return;
 	}
 	span = document.createElement('span');
@@ -103,9 +104,12 @@ window.onload = () => {
 
 $('#add-history').onclick = () => {
 	const { form: { search: { value } } } = document;
-	localStorage.setItem('history', `${localStorage.getItem('history') || ''}${value};,;`);
-	addHistory(value);
-	checkEmpty();
+	const { firstChild: { firstChild } } = $('#history-list');
+	if (value && value.trim() && !(firstChild.text && firstChild.text.trim() === extractValues(value)[0].trim())) {
+		localStorage.setItem('history', `${localStorage.getItem('history') || ''}${value};,;`);
+		addHistory(value);
+		checkEmpty();
+	}
 	return false;
 };
 
