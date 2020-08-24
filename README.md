@@ -10,4 +10,4 @@ https://ayrtoneverton.github.io/navnice
 
 YouTube video.
 
-[![](http://img.youtube.com/vi/GG8psJpoFeo/mqdefault.jpg)](https://youtu.be/GG8psJpoFeo "")
+[![](http://img.youtube.com/vi/GG8psJpoFeo/mqdefault.jpg)](https://youtu.be/GG8psJpoFeo "YouTube video")
