@@ -21,16 +21,6 @@ body {
 	display: flex;
 	flex-direction: column;
 }
-@media(max-width: 635px) {
-	html {		
-		font-size: 9px;
-	}
-}
-@media(min-width: 1500px) {
-	html {		
-		font-size: 22px;
-	}
-}
 ::-webkit-scrollbar {
 	width: .5rem;
 }
@@ -210,4 +200,22 @@ button svg {
 }
 button:hover, button:focus {
 	background: #999;
+}
+
+/*==============  MEDIA QUERIES  ================*/
+@media(max-width: 635px) {
+	html {		
+		font-size: 9px;
+	}
+	#hide {
+		display: none;
+	}
+	#logo {
+		margin-left: 0;
+	}
+}
+@media(min-width: 1500px) {
+	html {		
+		font-size: 22px;
+	}
 }
